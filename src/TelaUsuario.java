@@ -109,9 +109,5 @@ public class TelaUsuario extends JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        dispose();
-        Quiz quiz = new Quiz();
-    }// GEN-LAST:event_jButton1ActionPerformed
 
 }

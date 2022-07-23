@@ -5,22 +5,25 @@ import javax.swing.*;
 public class Quiz implements ActionListener{
 	
 	String[] questions = 	{
-								"o que é uma celula?",
-								"qual a função da mitocondria?",
-								"teste ???",
-								"teste de logica??"
+								"No corpo humano, o timo é...",
+								"Fotossíntese é o processo...",
+								"Autótrofos são os seres vivos que...",
+								"Os ovários são...",
+								" É uma síndrome que afeta apenas indivíduos do sexo masculino. Pode causar ginecomastia."
 							};
 	String[][] options = 	{
-								{"aaaaaaaa","bbbbbbb","cccccccc","dddddddd"},
-								{"aaaaaaaa","bbbbbbb","cccccccc","dddddddd"},
-								{"aaaaaaaa","bbbbbbb","cccccccc","dddddddd"},
-								{"aaaaaaaa","bbbbbbb","cccccccc","dddddddd"}
+								{"um osso que constitui o esqueleto dos dedos","uma cavidade que contém as cordas vocais","uma glândula situada no tórax","a parte posterior da articulação entre o braço e o antebraço"},
+								{"pelo qual as células englobam partículas relativamente grandes","realizado pelos seres vivos clorofilados, que utilizam dióxido de carbono e água, para obter glicose através da energia da luz solar","de estudo das características gênicas de uma determinada família"," de revelação de fotos digitais, a partir de um pen drive ou HD externo"},
+								{"auxiliam na fabricação de automóveis","possuem autonomia para andar","são capazes de produzir seu próprio alimento","se alimentam de outros seres da mesma espécie"},
+								{"repositórios de ovos de diversas espécies de animais","animais cujo desenvolvimento embrionário ocorre dentro de um ovo","os ossos mais longos do corpo humano","duas glândulas do aparelho genital feminino"},
+								{"síndrome de Down","síndrome de Klinefelter","síndrome do pânico","síndrome de Turner"}
 							};
 	char[] answers = 		{
 								'A',
 								'B',
 								'C',
-								'C'
+								'C',
+								'D'
 							};
 	char guess;
 	char answer;
@@ -33,15 +36,15 @@ public class Quiz implements ActionListener{
 	JFrame frame = new JFrame();
 	JTextField textfield = new JTextField();
 	JTextArea textarea = new JTextArea();
-	JButton buttonA = new JButton();
-	JButton buttonB = new JButton();
-	JButton buttonC = new JButton();
-	JButton buttonD = new JButton();
-	JLabel answer_labelA = new JLabel();
-	JLabel answer_labelB = new JLabel();
-	JLabel answer_labelC = new JLabel();
-	JLabel answer_labelD = new JLabel();
-	JLabel time_label = new JLabel();
+	JButton botaoA = new JButton();
+	JButton botaoB = new JButton();
+	JButton botaoC = new JButton();
+	JButton botaoD = new JButton();
+	JLabel reposta_A = new JLabel();
+	JLabel reposta_B = new JLabel();
+	JLabel resposta_C = new JLabel();
+	JLabel resposta_D = new JLabel();
+	JLabel relogio = new JLabel();
 	JLabel seconds_left = new JLabel();
 	JTextField number_right = new JTextField();
 	JTextField percentage = new JTextField();
@@ -60,80 +63,76 @@ public class Quiz implements ActionListener{
 	
 	public Quiz() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800,800);
+		frame.setSize(1500,800);
 		frame.getContentPane().setBackground(new Color(128,128,128));
 		frame.setLayout(null);
 		frame.setResizable(false);
 		
-		textfield.setBounds(0,0,800,50);
-		// textfield.setBackground(new Color(25,25,25));
-		// textfield.setForeground(new Color(25,255,0));
+		textfield.setBounds(0,0,1500,50);
 		textfield.setFont(new Font("Ink Free",Font.BOLD,30));
 		textfield.setBorder(BorderFactory.createBevelBorder(1));
 		textfield.setHorizontalAlignment(JTextField.CENTER);
 		textfield.setEditable(false);
 		
-		textarea.setBounds(0,50,800,50);
+		textarea.setBounds(0,50,1500,50);
 		textarea.setLineWrap(true);
 		textarea.setWrapStyleWord(true);
-		// textarea.setBackground(new Color(25,25,25));
-		// textarea.setForeground(new Color(25,255,0));
-		textarea.setFont(new Font("MV Boli",Font.BOLD,25));
-		textarea.setBorder(BorderFactory.createBevelBorder(1));
+		//textarea.setBackground(new Color(128,128,128));
+		textarea.setFont(new Font("MV Boli",Font.BOLD,28));
+		//textarea.setBorder(BorderFactory.createBevelBorder(1));
 		textarea.setEditable(false);
 		
 		/*ser da direção dos botoes */
-		buttonA.setBounds(15,200,100,100);
-		buttonA.setFont(new Font("MV Boli",Font.BOLD,20));
-		buttonA.setSize(50,50);
-		buttonA.setFocusable(false);
-		buttonA.addActionListener(this);
-		buttonA.setText("A");
+		botaoA.setBounds(15,200,100,100);
+		botaoA.setFont(new Font("MV Boli",Font.BOLD,20));
+		botaoA.setSize(50,50);
+		botaoA.setFocusable(false);
+		botaoA.addActionListener(this);
+		botaoA.setText("A");
 		
-		buttonB.setBounds(15,300,100,100);
-		buttonB.setFont(new Font("MV Boli",Font.BOLD,20));
-		buttonB.setSize(50,50);
-		buttonB.setFocusable(false);
-		buttonB.addActionListener(this);
-		buttonB.setText("B");
+		botaoB.setBounds(15,300,100,100);
+		botaoB.setFont(new Font("MV Boli",Font.BOLD,20));
+		botaoB.setSize(50,50);
+		botaoB.setFocusable(false);
+		botaoB.addActionListener(this);
+		botaoB.setText("B");
 		
-		buttonC.setBounds(15,400,100,100);
-		buttonC.setFont(new Font("MV Boli",Font.BOLD,20));
-		buttonC.setSize(50,50);
-		buttonC.setFocusable(false);
-		buttonC.addActionListener(this);
-		buttonC.setText("C");
+		botaoC.setBounds(15,400,100,100);
+		botaoC.setFont(new Font("MV Boli",Font.BOLD,20));
+		botaoC.setSize(50,50);
+		botaoC.setFocusable(false);
+		botaoC.addActionListener(this);
+		botaoC.setText("C");
 		
-		buttonD.setBounds(15,500,100,100);
-		buttonD.setFont(new Font("MV Boli",Font.BOLD,20));
-		buttonD.setSize(50,50);
-		buttonD.setFocusable(false);
-		buttonD.addActionListener(this);
-		buttonD.setText("D");
+		botaoD.setBounds(15,500,100,100);
+		botaoD.setFont(new Font("MV Boli",Font.BOLD,20));
+		botaoD.setSize(50,50);
+		botaoD.setFocusable(false);
+		botaoD.addActionListener(this);
+		botaoD.setText("D");
 		
 		/* set da posição dos texto das respostas */
-		answer_labelA.setBounds(75,170,500,100);
-		answer_labelA.setBackground(new Color(50,50,50));
-		answer_labelA.setForeground(new Color(25,255,0));
-		answer_labelA.setFont(new Font("MV Boli",Font.PLAIN,35));
+		reposta_A.setBounds(75,170,1700,100);
+		reposta_A.setBackground(new Color(50,50,50));
+		reposta_A.setForeground(new Color(25,255,0));
+		reposta_A.setFont(new Font("MV Boli",Font.PLAIN,35));
 		
-		answer_labelB.setBounds(75,270,500,100);
-		answer_labelB.setBackground(new Color(50,50,50));
-		answer_labelB.setForeground(new Color(25,255,0));
-		answer_labelB.setFont(new Font("MV Boli",Font.PLAIN,35));
+		reposta_B.setBounds(75,270,1700,100);
+		reposta_B.setBackground(new Color(50,50,50));
+		reposta_B.setForeground(new Color(25,255,0));
+		reposta_B.setFont(new Font("MV Boli",Font.PLAIN,35));
 		
-		answer_labelC.setBounds(75,370,500,100);
-		answer_labelC.setBackground(new Color(50,50,50));
-		answer_labelC.setForeground(new Color(25,255,0));
-		answer_labelC.setFont(new Font("MV Boli",Font.PLAIN,35));
+		resposta_C.setBounds(75,370,1700,100);
+		resposta_C.setBackground(new Color(50,50,50));
+		resposta_C.setForeground(new Color(25,255,0));
+		resposta_C.setFont(new Font("MV Boli",Font.PLAIN,35));
 		
-		answer_labelD.setBounds(75,470,500,100);
-		answer_labelD.setBackground(new Color(50,50,50));
-		answer_labelD.setForeground(new Color(25,255,0));
-		answer_labelD.setFont(new Font("MV Boli",Font.PLAIN,35));
+		resposta_D.setBounds(75,470,1700,100);
+		resposta_D.setBackground(new Color(50,50,50));
+		resposta_D.setForeground(new Color(25,255,0));
+		resposta_D.setFont(new Font("MV Boli",Font.PLAIN,35));
 		
-		seconds_left.setBounds(690,670,100,100);
-		//seconds_left.setBackground(new Color(25,25,25));
+		seconds_left.setBounds(1390,670,100,100);
 		seconds_left.setForeground(new Color(255,0,0));
 		seconds_left.setFont(new Font("Ink Free",Font.BOLD,60));
 		seconds_left.setBorder(BorderFactory.createBevelBorder(1));
@@ -141,57 +140,48 @@ public class Quiz implements ActionListener{
 		seconds_left.setHorizontalAlignment(JTextField.CENTER);
 		seconds_left.setText(String.valueOf(seconds));
 		
-		time_label.setBounds(535,475,25,25);
-		// time_label.setBackground(new Color(50,50,50));
-		// time_label.setForeground(new Color(255,0,0));
-		time_label.setFont(new Font("MV Boli",Font.PLAIN,16));
-		time_label.setHorizontalAlignment(JTextField.CENTER);
-		time_label.setText("timer >:D");
 		
-		number_right.setBounds(225,225,200,100);
-		// number_right.setBackground(new Color(25,25,25));
-		// number_right.setForeground(new Color(25,255,0));
+		number_right.setBounds(600,225,200,100);
 		number_right.setFont(new Font("Ink Free",Font.BOLD,50));
 		number_right.setBorder(BorderFactory.createBevelBorder(1));
 		number_right.setHorizontalAlignment(JTextField.CENTER);
 		number_right.setEditable(false);
 		
-		percentage.setBounds(225,325,200,100);
-		// percentage.setBackground(new Color(25,25,25));
-		// percentage.setForeground(new Color(25,255,0));
+		percentage.setBounds(600,325,200,100);
 		percentage.setFont(new Font("Ink Free",Font.BOLD,50));
 		percentage.setBorder(BorderFactory.createBevelBorder(1));
 		percentage.setHorizontalAlignment(JTextField.CENTER);
 		percentage.setEditable(false);
 		
-		frame.add(time_label);
+		frame.add(relogio);
 		frame.add(seconds_left);
-		frame.add(answer_labelA);
-		frame.add(answer_labelB);
-		frame.add(answer_labelC);
-		frame.add(answer_labelD);
-		frame.add(buttonA);
-		frame.add(buttonB);
-		frame.add(buttonC);
-		frame.add(buttonD);
+		frame.add(reposta_A);
+		frame.add(reposta_B);
+		frame.add(resposta_C);
+		frame.add(resposta_D);
+		frame.add(botaoA);
+		frame.add(botaoB);
+		frame.add(botaoC);
+		frame.add(botaoD);
 		frame.add(textarea);
 		frame.add(textfield);
 		frame.setVisible(true);
 		
-		nextQuestion();
+		proximaQuestao();
 	}
-	public void nextQuestion() {
+
+	public void proximaQuestao() {
 		
 		if(index>=total_questions) {
 			results();
 		}
 		else {
-			textfield.setText("Question "+(index+1));
+			textfield.setText("Questão "+(index+1));
 			textarea.setText(questions[index]);
-			answer_labelA.setText(options[index][0]);
-			answer_labelB.setText(options[index][1]);
-			answer_labelC.setText(options[index][2]);
-			answer_labelD.setText(options[index][3]);
+			reposta_A.setText(options[index][0]);
+			reposta_B.setText(options[index][1]);
+			resposta_C.setText(options[index][2]);
+			resposta_D.setText(options[index][3]);
 			timer.start();
 		}
 	}
@@ -199,30 +189,30 @@ public class Quiz implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-			buttonA.setEnabled(false);
-			buttonB.setEnabled(false);
-			buttonC.setEnabled(false);
-			buttonD.setEnabled(false);
+			botaoA.setEnabled(false);
+			botaoB.setEnabled(false);
+			botaoC.setEnabled(false);
+			botaoD.setEnabled(false);
 			
-			if(e.getSource()==buttonA) {
+			if(e.getSource()==botaoA) {
 				answer= 'A';
 				if(answer == answers[index]) {
 					correct_guesses++;
 				}
 			}
-			if(e.getSource()==buttonB) {
+			if(e.getSource()==botaoB) {
 				answer= 'B';
 				if(answer == answers[index]) {
 					correct_guesses++;
 				}
 			}
-			if(e.getSource()==buttonC) {
+			if(e.getSource()==botaoC) {
 				answer= 'C';
 				if(answer == answers[index]) {
 					correct_guesses++;
 				}
 			}
-			if(e.getSource()==buttonD) {
+			if(e.getSource()==botaoD) {
 				answer= 'D';
 				if(answer == answers[index]) {
 					correct_guesses++;
@@ -235,39 +225,39 @@ public class Quiz implements ActionListener{
 		
 		timer.stop();
 		
-		buttonA.setEnabled(false);
-		buttonB.setEnabled(false);
-		buttonC.setEnabled(false);
-		buttonD.setEnabled(false);
+		botaoA.setEnabled(false);
+		botaoB.setEnabled(false);
+		botaoC.setEnabled(false);
+		botaoD.setEnabled(false);
 		
 		if(answers[index] != 'A')
-			answer_labelA.setForeground(new Color(255,0,0));
+			reposta_A.setForeground(new Color(255,0,0));
 		if(answers[index] != 'B')
-			answer_labelB.setForeground(new Color(255,0,0));
+			reposta_B.setForeground(new Color(255,0,0));
 		if(answers[index] != 'C')
-			answer_labelC.setForeground(new Color(255,0,0));
+			resposta_C.setForeground(new Color(255,0,0));
 		if(answers[index] != 'D')
-			answer_labelD.setForeground(new Color(255,0,0));
+			resposta_D.setForeground(new Color(255,0,0));
 		
 		Timer pause = new Timer(2000, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				answer_labelA.setForeground(new Color(25,255,0));
-				answer_labelB.setForeground(new Color(25,255,0));
-				answer_labelC.setForeground(new Color(25,255,0));
-				answer_labelD.setForeground(new Color(25,255,0));
+				reposta_A.setForeground(new Color(25,255,0));
+				reposta_B.setForeground(new Color(25,255,0));
+				resposta_C.setForeground(new Color(25,255,0));
+				resposta_D.setForeground(new Color(25,255,0));
 				
 				answer = ' ';
 				seconds=10;
 				seconds_left.setText(String.valueOf(seconds));
-				buttonA.setEnabled(true);
-				buttonB.setEnabled(true);
-				buttonC.setEnabled(true);
-				buttonD.setEnabled(true);
+				botaoA.setEnabled(true);
+				botaoB.setEnabled(true);
+				botaoC.setEnabled(true);
+				botaoD.setEnabled(true);
 				index++;
-				nextQuestion();
+				proximaQuestao();
 			}
 		});
 		pause.setRepeats(false);
@@ -276,19 +266,19 @@ public class Quiz implements ActionListener{
 	
 	public void results(){
 		
-		buttonA.setEnabled(false);
-		buttonB.setEnabled(false);
-		buttonC.setEnabled(false);
-		buttonD.setEnabled(false);
+		botaoA.setEnabled(false);
+		botaoB.setEnabled(false);
+		botaoC.setEnabled(false);
+		botaoD.setEnabled(false);
 		
 		result = (int)((correct_guesses/(double)total_questions)*100);
 		
 		textfield.setText("RESULTS!");
 		textarea.setText("");
-		answer_labelA.setText("");
-		answer_labelB.setText("");
-		answer_labelC.setText("");
-		answer_labelD.setText("");
+		reposta_A.setText("");
+		reposta_B.setText("");
+		resposta_C.setText("");
+		resposta_D.setText("");
 		
 		number_right.setText("("+correct_guesses+"/"+total_questions+")");
 		percentage.setText(result+"%");
