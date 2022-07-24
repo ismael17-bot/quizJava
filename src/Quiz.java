@@ -273,7 +273,7 @@ public class Quiz implements ActionListener{
 		
 		result = (int)((correct_guesses/(double)total_questions)*100);
 		
-		textfield.setText("RESULTS!");
+		textfield.setText("RESULTADO FINAL!");
 		textarea.setText("");
 		reposta_A.setText("");
 		reposta_B.setText("");
